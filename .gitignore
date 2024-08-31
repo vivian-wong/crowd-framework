@@ -1,0 +1,11 @@
+checkpoints/
+data/GCS/Frame/
+data/SEQ/detection_df_SEQ_1fps.csv
+data/Stadium/tracking_df_stadium_2023_1fps.csv
+results_out.csv
+failed_thermodynamic_visualizer.ipynb
+plot_results.ipynb
+.ipynb_checkpoints/
+__pycache__/
+.DS_Store?
+.DS_Store
