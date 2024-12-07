@@ -1,0 +1,24 @@
+name: crowd-framework
+channels:
+    - conda-forge
+    - pytorch
+    - pyg
+    - defaults
+dependencies: 
+    - python=3.10
+    - pandas
+    - scipy
+    - matplotlib
+    - jupyterlab
+    - ipykernel
+    - ipywidgets
+    - pytorch>=1.11
+    - pyg
+    - torchvision
+    - pip
+    - pip: 
+        - opencv-python
+        - utm
+        - filterpy
+        - seaborn
+        - torch-geometric-temporal
