@@ -3,13 +3,16 @@ import numpy as np
 import configparser
 import torch
 from st_dif.cmgraph import CMGraph
-
+import os
 config_file_paths = {
     'SEQ':    './data/campus-crowd-processed/SEQ.cfg', 
-    'Stadium':'./data/campus-crowd-processed/Stadium_2023.cfg'
+    'Stadium':'./data/campus-crowd-processed/Stadium_2023.cfg',
+    'GCS': './data/gcs/gcs-processed/GCS.cfg',
 }
 
 def get_pyg_temporal_dataset(DATASET, forecasting_horizon): 
+    current_path = os.getcwd()
+    print(current_path)
     '''
     Parameters:
         raise ValueError(f"DATASET must be one of: {', '.join(config_file_paths.keys())}")
