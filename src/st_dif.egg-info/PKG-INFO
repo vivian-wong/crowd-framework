@@ -1,11 +1,18 @@
-Metadata-Version: 2.2
+Metadata-Version: 2.4
 Name: st_dif
-Version: 0.1.0
-Summary: Your short description
+Version: 0.1.1
+Summary: A library for crowdflow prediction!
 Author-email: Vivian Wong <vivian.wong@ufl.edu>
 Requires-Python: >=3.8
 Description-Content-Type: text/markdown
 License-File: LICENSE
+Requires-Dist: torch<3.0.0,>=2.5.1
+Requires-Dist: torchvision<1.0.0,>=0.20.1
+Requires-Dist: torchaudio<3.0.0,>=2.5.1
+Requires-Dist: torch_geometric<3.0.0,>=2.3.1
+Requires-Dist: torch_geometric_temporal<1.0.0,>=0.54.0
+Requires-Dist: torch_scatter<3.0.0,>=2.1.2
+Requires-Dist: torch_sparse<1.0.0,>=0.6.18
 Requires-Dist: asttokens
 Requires-Dist: certifi
 Requires-Dist: charset-normalizer
@@ -36,7 +43,7 @@ Requires-Dist: matplotlib-inline
 Requires-Dist: mpmath
 Requires-Dist: nest-asyncio
 Requires-Dist: networkx
-Requires-Dist: numpy>=1.20.0
+Requires-Dist: numpy<3.0.0,>=2.2.4
 Requires-Dist: opencv-python
 Requires-Dist: packaging
 Requires-Dist: pandas>=1.2.0
@@ -60,13 +67,6 @@ Requires-Dist: six
 Requires-Dist: stack-data
 Requires-Dist: sympy
 Requires-Dist: threadpoolctl
-Requires-Dist: torch>=2.5.0
-Requires-Dist: torch_geometric>=2.3.0
-Requires-Dist: torch_geometric_temporal>=0.50.0
-Requires-Dist: torch_scatter>=2.1.2
-Requires-Dist: torch_sparse>=0.6.18
-Requires-Dist: torchaudio>=2.5.0
-Requires-Dist: torchvision>=0.20.0
 Requires-Dist: tornado
 Requires-Dist: tqdm
 Requires-Dist: traitlets
@@ -78,6 +78,7 @@ Provides-Extra: dev
 Requires-Dist: pytest>=7.0; extra == "dev"
 Requires-Dist: black>=22.0; extra == "dev"
 Requires-Dist: mypy>=1.0; extra == "dev"
+Dynamic: license-file
 
 # Crowd framework paper code
 Paper name TBD

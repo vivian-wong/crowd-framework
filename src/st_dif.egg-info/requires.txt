@@ -1,3 +1,10 @@
+torch<3.0.0,>=2.5.1
+torchvision<1.0.0,>=0.20.1
+torchaudio<3.0.0,>=2.5.1
+torch_geometric<3.0.0,>=2.3.1
+torch_geometric_temporal<1.0.0,>=0.54.0
+torch_scatter<3.0.0,>=2.1.2
+torch_sparse<1.0.0,>=0.6.18
 asttokens
 certifi
 charset-normalizer
@@ -28,7 +35,7 @@ matplotlib-inline
 mpmath
 nest-asyncio
 networkx
-numpy>=1.20.0
+numpy<3.0.0,>=2.2.4
 opencv-python
 packaging
 pandas>=1.2.0
@@ -52,13 +59,6 @@ six
 stack-data
 sympy
 threadpoolctl
-torch>=2.5.0
-torch_geometric>=2.3.0
-torch_geometric_temporal>=0.50.0
-torch_scatter>=2.1.2
-torch_sparse>=0.6.18
-torchaudio>=2.5.0
-torchvision>=0.20.0
 tornado
 tqdm
 traitlets

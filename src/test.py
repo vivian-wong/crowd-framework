@@ -1,0 +1,40 @@
+import torch
+from st_dif.data_utils import get_pyg_temporal_dataset, get_loaders
+
+def main():
+    print("Testing st_dif package...")
+
+    class Args:
+        def __init__(self):
+            self.DATASET = "GCS"
+            self.forecasting_horizon = 20
+            self.train_ratio = 0.7
+            self.val_ratio = 0.1
+            self.test_ratio = 0.2
+            self.batch_size = 32
+
+    args = Args()
+
+    dataset, cmgraph = get_pyg_temporal_dataset(args.DATASET, args.forecasting_horizon)
+    print("Dataset loaded successfully.")
+    print(f"Number of data points in dataset: {len(dataset)}")
+
+    device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
+    train_loader, val_loader, test_loader = get_loaders(
+        dataset,
+        args.batch_size,
+        args.train_ratio,
+        args.val_ratio,
+        args.test_ratio,
+        device=device
+    )
+    print("Data loaders created successfully.")
+
+    first_batch = next(iter(train_loader))
+    print("First batch X shape:", first_batch.x.shape)
+    print("First batch Y shape:", first_batch.y.shape)
+
+    print("Test script completed without errors.")
+
+if __name__ == "__main__":
+    main()
