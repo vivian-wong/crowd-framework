@@ -29,34 +29,23 @@ jobs:
     # 3. INSTALLATION: This multi-line step replicates your exact installation process
     - name: Install dependencies
       run: |
-        # It's good practice to upgrade pip
         python -m pip install --upgrade pip
-        
-        # --- Step 1: Install packages from your 'requirements.txt' ---
-        echo "Installing base dependencies..."
-        pip install numpy>=2.0 matplotlib seaborn opencv-python tqdm configparser argparse ipykernel torch>=2.5
-        
-        # --- Step 2: Replicate the logic from your 'install_pyg.py' script ---
-        echo "Installing PyTorch Geometric dependencies..."
-        
-        # Get the installed torch version and determine the CUDA version for the PyG URL.
-        # On a CPU runner, `torch.cuda.is_available()` will be false, correctly defaulting to 'cpu'.
+
+        # Step 1: Install torch first
+        pip install torch>=2.5
+
+        # Step 2: Install other base dependencies
+        pip install numpy>=2.0 matplotlib seaborn opencv-python tqdm configparser argparse ipykernel
+
+        # Step 3: Install PyTorch Geometric dependencies
         TORCH_VERSION=$(python -c "import torch; print(torch.__version__.split('+')[0])")
         CUDA_VERSION=$(python -c "import torch; print('cu' + torch.version.cuda.replace('.', '') if torch.cuda.is_available() else 'cpu')")
-        
-        echo "Detected PyTorch version: $TORCH_VERSION"
-        echo "Detected CUDA version for PyG URL: $CUDA_VERSION"
-        
-        # Install torch-scatter and torch-sparse using the specific find-links URL
         pip install torch-scatter torch-sparse -f https://data.pyg.org/whl/torch-${TORCH_VERSION}+${CUDA_VERSION}.html
-        
-        # Install the rest of the PyG ecosystem and the pinned pandas version
         pip install torch-geometric==2.3
         pip install torch-geometric-temporal
         pip install pandas==2.2.3
-        
-        # --- Step 3: Install your local package ---
-        echo "Installing the st_dif package in editable mode..."
+
+        # Step 4: Install your local package
         pip install -e .
 
     - name: Test package import
