@@ -1,5 +1,4 @@
 LICENSE
-README.md
 pyproject.toml
 src/st_dif/__init__.py
 src/st_dif/cmgraph.py

@@ -6,112 +6,20 @@ Author-email: Vivian Wong <vivian.wong@ufl.edu>
 Requires-Python: >=3.8
 Description-Content-Type: text/markdown
 License-File: LICENSE
-Requires-Dist: torch<3.0.0,>=2.5.1
-Requires-Dist: torchvision<1.0.0,>=0.20.1
-Requires-Dist: torchaudio<3.0.0,>=2.5.1
-Requires-Dist: torch_geometric<3.0.0,>=2.3.1
-Requires-Dist: torch_geometric_temporal<1.0.0,>=0.54.0
-Requires-Dist: torch_scatter<3.0.0,>=2.1.2
-Requires-Dist: torch_sparse<1.0.0,>=0.6.18
-Requires-Dist: asttokens
-Requires-Dist: certifi
-Requires-Dist: charset-normalizer
-Requires-Dist: colorama
-Requires-Dist: comm
+Requires-Dist: torch>=2.5.1
+Requires-Dist: torch_geometric>=2.3.1
+Requires-Dist: torch_geometric_temporal>=0.54.0
+Requires-Dist: torch_scatter>=2.1.2
+Requires-Dist: torch_sparse>=0.6.18
+Requires-Dist: numpy>=2.2.4
+Requires-Dist: pandas>=1.2.0
 Requires-Dist: configparser
-Requires-Dist: contourpy
-Requires-Dist: cycler
-Requires-Dist: debugpy
-Requires-Dist: decorator
-Requires-Dist: exceptiongroup
-Requires-Dist: executing
-Requires-Dist: filelock
-Requires-Dist: fonttools
-Requires-Dist: fsspec
-Requires-Dist: idna
 Requires-Dist: ipykernel
 Requires-Dist: ipython
-Requires-Dist: jedi
-Requires-Dist: Jinja2
-Requires-Dist: joblib
 Requires-Dist: jupyter_client
 Requires-Dist: jupyter_core
-Requires-Dist: kiwisolver
-Requires-Dist: MarkupSafe
-Requires-Dist: matplotlib
-Requires-Dist: matplotlib-inline
-Requires-Dist: mpmath
-Requires-Dist: nest-asyncio
-Requires-Dist: networkx
-Requires-Dist: numpy<3.0.0,>=2.2.4
-Requires-Dist: opencv-python
-Requires-Dist: packaging
-Requires-Dist: pandas>=1.2.0
-Requires-Dist: parso
-Requires-Dist: pillow
-Requires-Dist: platformdirs
-Requires-Dist: prompt-toolkit
-Requires-Dist: psutil
-Requires-Dist: pure-eval
-Requires-Dist: pygments
-Requires-Dist: pyparsing
-Requires-Dist: python-dateutil
-Requires-Dist: pytz
-Requires-Dist: pywin32
-Requires-Dist: pyzmq
-Requires-Dist: requests
-Requires-Dist: scikit-learn
-Requires-Dist: scipy
-Requires-Dist: seaborn
-Requires-Dist: six
-Requires-Dist: stack-data
-Requires-Dist: sympy
-Requires-Dist: threadpoolctl
-Requires-Dist: tornado
-Requires-Dist: tqdm
-Requires-Dist: traitlets
-Requires-Dist: typing_extensions
-Requires-Dist: tzdata
-Requires-Dist: urllib3
-Requires-Dist: wcwidth
 Provides-Extra: dev
 Requires-Dist: pytest>=7.0; extra == "dev"
 Requires-Dist: black>=22.0; extra == "dev"
 Requires-Dist: mypy>=1.0; extra == "dev"
 Dynamic: license-file
-
-# Crowd framework paper code
-Paper name TBD
-
-## Installation
-
-```bash
-git clone https://github.com/vivian-wong/crowd-framework
-cd crowd-framework
-# create conda virtual environment
-conda create --name crowd-framework python=3.10 
-conda activate crowd-framework
-# install prerequisites
-pip install -r requirements.txt
-# install pytorch geometric and pytorch geometric temporal
-python install_pyg.py
-```
-
-## Usage
-
-
-## Examples
-Check the examples/ directory for simplified demo notebooks.
-
-## Reproducing paper experiments 
-To run all experiments as detailed in the paper, run 
-```
-bash reproduce_paper_experiments.sh
-```
-and generate plots with the jupyter notebook experiments/plot_results.ipynb
-
-## Contributing
-Contributions are welcome! Please read the CONTRIBUTING.md for guidelines.
-
-## License
-This project is licensed under the MIT License - see the [LICENSE](https://github.com/vivian-wong/crowd-framework/blob/master/LICENSE) file for details.

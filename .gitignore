@@ -1,5 +1,6 @@
 # Ignore virtual environment 
 .conda/
+st_dif_env
 
 # Ignore log files
 *.log

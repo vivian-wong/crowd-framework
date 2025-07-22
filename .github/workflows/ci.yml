@@ -1,0 +1,66 @@
+# .github/workflows/ci.yml
+# This workflow automates the installation and basic testing of your package.
+
+name: CI
+
+# 1. TRIGGERS: This workflow runs on pushes or pull requests to the 'master' branch.
+on:
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
+  workflow_dispatch:
+
+jobs:
+  build:
+    # The type of runner that the job will run on
+    runs-on: ubuntu-latest
+
+    steps:
+    # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+    - uses: actions/checkout@v3
+
+    # 2. PYTHON VERSION: Sets up a specific version of Python for the job
+    - name: Set up Python 3.10
+      uses: actions/setup-python@v4
+      with:
+        python-version: '3.10'
+
+    # 3. INSTALLATION: This multi-line step replicates your exact installation process
+    - name: Install dependencies
+      run: |
+        # It's good practice to upgrade pip
+        python -m pip install --upgrade pip
+        
+        # --- Step 1: Install packages from your 'requirements.txt' ---
+        echo "Installing base dependencies..."
+        pip install numpy>=2.0 matplotlib seaborn opencv-python tqdm configparser argparse ipykernel torch>=2.5
+        
+        # --- Step 2: Replicate the logic from your 'install_pyg.py' script ---
+        echo "Installing PyTorch Geometric dependencies..."
+        
+        # Get the installed torch version and determine the CUDA version for the PyG URL.
+        # On a CPU runner, `torch.cuda.is_available()` will be false, correctly defaulting to 'cpu'.
+        TORCH_VERSION=$(python -c "import torch; print(torch.__version__.split('+')[0])")
+        CUDA_VERSION=$(python -c "import torch; print('cu' + torch.version.cuda.replace('.', '') if torch.cuda.is_available() else 'cpu')")
+        
+        echo "Detected PyTorch version: $TORCH_VERSION"
+        echo "Detected CUDA version for PyG URL: $CUDA_VERSION"
+        
+        # Install torch-scatter and torch-sparse using the specific find-links URL
+        pip install torch-scatter torch-sparse -f https://data.pyg.org/whl/torch-${TORCH_VERSION}+${CUDA_VERSION}.html
+        
+        # Install the rest of the PyG ecosystem and the pinned pandas version
+        pip install torch-geometric==2.3
+        pip install torch-geometric-temporal
+        pip install pandas==2.2.3
+        
+        # --- Step 3: Install your local package ---
+        echo "Installing the st_dif package in editable mode..."
+        pip install -e .
+
+    - name: Test package import
+      run: |
+        # A simple test to ensure the main library and key dependencies can be imported
+        echo "Running import test..."
+        python -c "import torch; import torch_geometric; import st_dif; print('Success: torch, torch_geometric, and st_dif were imported successfully.')"
