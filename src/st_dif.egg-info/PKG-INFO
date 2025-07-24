@@ -3,21 +3,23 @@ Name: st_dif
 Version: 0.1.1
 Summary: A library for crowdflow prediction!
 Author-email: Vivian Wong <vivian.wong@ufl.edu>
-Requires-Python: >=3.8
+Requires-Python: >=3.10
 Description-Content-Type: text/markdown
 License-File: LICENSE
-Requires-Dist: torch>=2.5.1
-Requires-Dist: torch_geometric>=2.3.1
-Requires-Dist: torch_geometric_temporal>=0.54.0
-Requires-Dist: torch_scatter>=2.1.2
-Requires-Dist: torch_sparse>=0.6.18
-Requires-Dist: numpy>=2.2.4
-Requires-Dist: pandas>=1.2.0
+Requires-Dist: torch>=2.5
+Requires-Dist: numpy>=2.0
+Requires-Dist: pandas==2.2.3
+Requires-Dist: torch_geometric
+Requires-Dist: torch_geometric_temporal
+Requires-Dist: torch_scatter
+Requires-Dist: torch_sparse
+Requires-Dist: matplotlib
+Requires-Dist: seaborn
+Requires-Dist: opencv-python
+Requires-Dist: tqdm
 Requires-Dist: configparser
+Requires-Dist: argparse
 Requires-Dist: ipykernel
-Requires-Dist: ipython
-Requires-Dist: jupyter_client
-Requires-Dist: jupyter_core
 Provides-Extra: dev
 Requires-Dist: pytest>=7.0; extra == "dev"
 Requires-Dist: black>=22.0; extra == "dev"
