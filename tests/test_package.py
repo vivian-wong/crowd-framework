@@ -1,8 +1,9 @@
 import torch
 from st_dif.data_utils import get_pyg_temporal_dataset, get_loaders
 
-def main():
-    print("Testing st_dif package...")
+# run python -m pytest tests/test_package.py if doing single test
+def test_data_loading_and_loaders():
+    print("Testing st_dif package loaders...")
 
     class Args:
         def __init__(self):
@@ -35,6 +36,3 @@ def main():
     print("First batch Y shape:", first_batch.y.shape)
 
     print("Test script completed without errors.")
-
-if __name__ == "__main__":
-    main()
