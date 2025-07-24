@@ -18,7 +18,6 @@ def test_data_loading_and_loaders():
 
     dataset, cmgraph = get_pyg_temporal_dataset(args.DATASET, args.forecasting_horizon)
     print("Dataset loaded successfully.")
-    print(f"Number of data points in dataset: {len(dataset)}")
 
     device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
     train_loader, val_loader, test_loader = get_loaders(
