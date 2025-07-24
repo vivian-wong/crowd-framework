@@ -50,9 +50,8 @@ jobs:
         pip install pandas==2.2.3
 
     - name: Install local package
-      run: pip install -e .
+      run: pip install -e .[test]
 
-    - name: Test package import
+    - name: Test package
       run: |
-        echo "Running import test..."
-        python -c "import torch; import torch_geometric; import st_dif; print('Success: torch, torch_geometric, and st_dif were imported successfully.')"
+        python -m pytest
