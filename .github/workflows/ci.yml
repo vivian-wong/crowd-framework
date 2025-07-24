@@ -33,7 +33,7 @@ jobs:
         python -m pip install --upgrade pip
         pip install -r requirements.txt
         echo "Running import test..."
-        python -c "import torch;"
+        python -c "import torch; print(torch.__version__.split('+')[0])"
 
     - name: Install pyg dependencies 
       run: |
