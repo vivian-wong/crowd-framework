@@ -1,7 +1,7 @@
 import torch
 from st_dif.data_utils import get_pyg_temporal_dataset, get_loaders
 
-# run python -m pytest tests/test_package.py if doing single test
+# run 'python -m pytest tests/test_package.py' if doing single test
 def test_data_loading_and_loaders():
     print("Testing st_dif package loaders...")
 
@@ -31,7 +31,6 @@ def test_data_loading_and_loaders():
     print("Data loaders created successfully.")
 
     first_batch = next(iter(train_loader))
-    print("First batch X shape:", first_batch.x.shape)
-    print("First batch Y shape:", first_batch.y.shape)
+    print("First batch:", first_batch)
 
     print("Test script completed without errors.")

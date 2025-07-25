@@ -57,8 +57,8 @@ def get_loaders(dataset, batch_size, train_ratio, val_ratio, test_ratio, device,
     """
     # Check if the ratios sum up to 1
     total_ratio = train_ratio + test_ratio + val_ratio
-    if not (total_ratio == 1.0):
-        print(train_ratio, test_ratio, val_ratio)
+    if not np.isclose(total_ratio, 1.0):
+        print(f"Ratios sum to {total_ratio}, which is not 1.0.")
         raise ValueError("Ratios must sum up to 1.0. Please provide valid ratios.")
     
     # convert node features to tensor dataset
@@ -69,8 +69,11 @@ def get_loaders(dataset, batch_size, train_ratio, val_ratio, test_ratio, device,
     dataset_new = torch.utils.data.TensorDataset(input_tensor, target_tensor)
     
     # split to train val test and get loader
-    lengths = [int(p * len(dataset_new)) for p in [train_ratio, val_ratio, test_ratio]]
-    lengths[-1] = len(dataset_new) - sum(lengths[:-1])
+    # Ensure that the sum of lengths equals the total dataset length
+    train_len = int(train_ratio * len(dataset_new))
+    val_len = int(val_ratio * len(dataset_new))
+    test_len = len(dataset_new) - train_len - val_len
+    lengths = [train_len, val_len, test_len]
 
     train_dataset_new, val_dataset_new, test_dataset_new = torch.utils.data.random_split(
         dataset_new, 
