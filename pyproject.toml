@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "st_dif"
-version = "0.1.1"
+version = "0.1.2"
 description = "A library for crowdflow prediction!"
 authors = [
   { name="Vivian Wong", email="vivian.wong@ufl.edu" },
