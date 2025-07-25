@@ -111,7 +111,7 @@ pip install -e .[dev]
 
 ---
 
-# Run Installation Test
+## Run Installation Test
 Assuming pytest has been installed: 
 ```python
 python -m pytest
