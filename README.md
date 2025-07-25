@@ -2,8 +2,10 @@
 
 A Python library for crowd flow prediction and spatiotemporal modeling. Built on PyTorch, PyTorch Geometric, and PyTorch Geometric Temporal.
 
-This is the Python library developed for Chapter 3 and 4 of my thesis: 
+This is the Python library developed for Chapter 3 and 4 of the thesis: 
+```
 V. W. H. Wong, Spatio-temporal Representation Learning: Applications to Manufacturing Planning and Pedestrian Crowd Analysis, Ph.D. Thesis, Department of Civil and Environmental Engineering, Stanford University, Stanford, CA, June 2024.
+```
 
 ---
 
@@ -68,7 +70,12 @@ pip install st_dif
 
 ---
 
-## Example Full Setup Commands
+## Summary:
+- Follow the installation steps carefully to match CUDA and PyTorch versions.
+- Manually install `torch-scatter`, `torch-sparse`, and `torch-geometric` from the correct source.
+- Then install `st_dif`.
+
+### Example Full Setup Commands
 
 ```bash
 conda create -n st_dif_env python=3.10
@@ -142,10 +149,3 @@ Pull requests are welcome. For major changes, please open an issue first to disc
 MIT License
 
 ---
-
-# Summary
-
-- Follow the installation steps carefully to match CUDA and PyTorch versions.
-- Manually install `torch-scatter`, `torch-sparse`, and `torch-geometric` from the correct source.
-- Then install `st_dif`. 
-
