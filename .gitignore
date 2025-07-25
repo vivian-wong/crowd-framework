@@ -1,5 +1,6 @@
 # Ignore virtual environment 
 .conda/
+st_dif_env
 
 # Ignore log files
 *.log
@@ -37,3 +38,10 @@ checkpoints/
 
 # ignore archived codes
 archived/
+
+st_dif_test_env/
+test_env/
+test_library_full/
+crowd-framework/
+myfiles.tar
+test_outputs

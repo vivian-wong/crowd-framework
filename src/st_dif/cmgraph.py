@@ -1,6 +1,7 @@
 import pandas as pd
 import numpy as np
 import torch
+from torch_geometric.utils import to_dense_adj
 from torch_geometric.utils import dense_to_sparse
 from torch_geometric_temporal.signal import StaticGraphTemporalSignal
 
