@@ -58,6 +58,7 @@ def get_loaders(dataset, batch_size, train_ratio, val_ratio, test_ratio, device,
     # Check if the ratios sum up to 1
     total_ratio = train_ratio + test_ratio + val_ratio
     if not (total_ratio == 1.0):
+        print(train_ratio, test_ratio, val_ratio)
         raise ValueError("Ratios must sum up to 1.0. Please provide valid ratios.")
     
     # convert node features to tensor dataset
