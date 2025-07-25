@@ -2,6 +2,9 @@
 
 A Python library for crowd flow prediction and spatiotemporal modeling. Built on PyTorch, PyTorch Geometric, and PyTorch Geometric Temporal.
 
+This is the Python library developed for Chapter 3 and 4 of my thesis: 
+V. W. H. Wong, Spatio-temporal Representation Learning: Applications to Manufacturing Planning and Pedestrian Crowd Analysis, Ph.D. Thesis, Department of Civil and Environmental Engineering, Stanford University, Stanford, CA, June 2024.
+
 ---
 
 # Installation Guide
@@ -10,6 +13,7 @@ Follow these steps carefully to set up your environment.
 
 ---
 
+# Option 1: Install from PYPI
 ## 1. Create a New Virtual Environment
 
 Using **conda**:
@@ -62,15 +66,9 @@ Install the `st_dif` library:
 pip install st_dif
 ```
 
-Or if you are testing locally:
-
-```bash
-pip install dist/st_dif-0.1.1-py3-none-any.whl
-```
-
 ---
 
-# Example Full Setup Commands
+## Example Full Setup Commands
 
 ```bash
 conda create -n st_dif_env python=3.10
@@ -88,11 +86,29 @@ At this point, you are ready to use `st_dif`.
 
 ---
 
-# Notes
+### Notes
 
 - If you encounter `[WinError 127] The specified procedure could not be found`, it usually indicates that torch-scatter or torch-sparse were installed incorrectly. Reinstall them following the instructions above.
 - Ensure that your PyTorch version matches your CUDA version.
 - If using a CPU-only version of PyTorch, install CPU-compatible versions of the dependencies.
+
+---
+
+# Option 2: Install from Source (developer)
+```bash
+git clone https://github.com/vivian-wong/crowd-framework/
+cd crowd-framework
+pip install -e .[dev]
+
+``` 
+
+---
+
+# Run Installation Test
+Assuming pytest has been installed: 
+```python
+python -m pytest
+```
 
 ---
 
@@ -102,6 +118,16 @@ At this point, you are ready to use `st_dif`.
 from st_dif.data_utils import get_pyg_temporal_dataset, get_loaders
 from st_dif.models.sten import STEN
 ```
+Check the examples/ directory for simplified demo notebooks.
+
+---
+
+# Reproducing paper experiments 
+To run all experiments as detailed in the thesis, run 
+```
+bash reproduce_paper_experiments.sh
+```
+and generate plots with the jupyter notebook experiments/plot_results.ipynb
 
 ---
 
