@@ -10,6 +10,7 @@ echo "INFO: Detected PyTorch version: $TORCH_VERSION"
 echo "INFO: Detected CUDA version for PyG URL: $CUDA_VERSION"
 
 pip install torch-scatter torch-sparse -f https://data.pyg.org/whl/torch-${TORCH_VERSION}+${CUDA_VERSION}.html
-pip install torch-geometric==2.3
-pip install torch-geometric-temporal
 pip install pandas==2.2.3
+pip install torch-geometric==2.3.1
+# Version 0.54 has stale pandas metadata; pandas 2.2.3 is used by the paper run.
+pip install torch-geometric-temporal==0.54.0 --no-deps

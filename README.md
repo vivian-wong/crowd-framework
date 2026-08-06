@@ -105,7 +105,8 @@ At this point, you are ready to use `st_dif`.
 ```bash
 git clone https://github.com/vivian-wong/crowd-framework/
 cd crowd-framework
-pip install -e .[dev]
+bash install_dependencies.sh
+pip install -e .[dev] --no-deps
 
 ``` 
 
@@ -129,8 +130,16 @@ Check the examples/ directory for simplified demo notebooks.
 
 ---
 
-# Reproducing paper experiments 
-To run all experiments as detailed in the thesis, run 
+# Reproducing paper experiments
+For Tables 2-5 in the BuildSys paper, run:
+
+```
+bash experiment/reproduce_paper_experiments.sh
+```
+
+The current implementation fixes graph-layer execution and batched graph construction. ST-DIF results remain consistent with the published findings within experimental variation. The code used for the published experiments is archived at tag `buildsys-2026-artifact`.
+
+To run the older thesis experiments, run
 ```
 bash reproduce_paper_experiments.sh
 ```
