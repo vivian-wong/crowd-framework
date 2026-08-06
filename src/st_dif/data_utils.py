@@ -39,7 +39,8 @@ def get_pyg_temporal_dataset(DATASET, forecasting_horizon):
     print(next(iter(dataset))) # Print the first sample of the dataset
     return dataset, cmgraph
 
-def get_loaders(dataset, batch_size, train_ratio, val_ratio, test_ratio, device, manual_seed=42): 
+def get_loaders(dataset, batch_size, train_ratio, val_ratio, test_ratio, device,
+                manual_seed=42, shuffle_seed=None):
     """
     Splits the dataset into training, validation, and test sets, and returns data loaders for each set.
     Args:
@@ -81,7 +82,15 @@ def get_loaders(dataset, batch_size, train_ratio, val_ratio, test_ratio, device,
         generator=torch.Generator().manual_seed(manual_seed)
     )
 
-    train_loader = torch.utils.data.DataLoader(train_dataset_new, batch_size=batch_size, shuffle=True)
+    shuffle_generator = None
+    if shuffle_seed is not None:
+        shuffle_generator = torch.Generator().manual_seed(shuffle_seed)
+    train_loader = torch.utils.data.DataLoader(
+        train_dataset_new,
+        batch_size=batch_size,
+        shuffle=True,
+        generator=shuffle_generator,
+    )
     val_loader = torch.utils.data.DataLoader(val_dataset_new, batch_size=batch_size, shuffle=False)
     test_loader = torch.utils.data.DataLoader(test_dataset_new, batch_size=batch_size, shuffle=False)
 
@@ -120,4 +129,3 @@ def get_configs_dict(cfg_file_path):
                 # Store the value as-is in the nested dictionary
                 configs_dict[section][option] = value
     return configs_dict
-

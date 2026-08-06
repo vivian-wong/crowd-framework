@@ -1,12 +1,13 @@
 import torch
 import torch.nn.functional as F
 
-def train(model, train_loader, val_loader, static_edge_index, num_epochs, lr):
+def train(model, train_loader, val_loader, static_edge_index, num_epochs, lr,
+          weight_decay=0.0, max_grad_norm=None):
     loss_fn = torch.nn.MSELoss() 
     train_epoch_losses = []
     val_epoch_losses = []
     model.train()
-    optimizer = torch.optim.Adam(model.parameters(), lr=lr)
+    optimizer = torch.optim.Adam(model.parameters(), lr=lr, weight_decay=weight_decay)
 
     # start training loop 
     for epoch in range(num_epochs):
@@ -17,6 +18,8 @@ def train(model, train_loader, val_loader, static_edge_index, num_epochs, lr):
             loss = loss_fn(y_hat, labels)
             optimizer.zero_grad()
             loss.backward()
+            if max_grad_norm is not None:
+                torch.nn.utils.clip_grad_norm_(model.parameters(), max_grad_norm)
             optimizer.step()
             loss_list.append(loss.item())
             if step % 100 == 0 :
