@@ -80,7 +80,7 @@ class KLayerGCNConv(torch.nn.Module):
     def forward(self, x, edge_index, edge_weight):
         for k in range(len(self.convs)): 
             x = self.convs[k].forward(x, edge_index, edge_weight)
-            return x # shape (N, out_channels)
+        return x # shape (N, out_channels)
         
 '''
     A GCN-GRU model with dense connection, implemented with pyg.DeepGCNLayer 
@@ -166,7 +166,7 @@ class GRU_only(torch.nn.Module):
                 edge_index: torch.LongTensor = None,  # dummy placeholder
                 edge_weight: torch.FloatTensor = None, # dummy placeholder
                ) -> torch.FloatTensor:
-        gru_in = torch.reshape(X, (X.shape[0], X.shape[1], self.periods, -1)) #(B,N,2,T)->(B,N,T,2)
+        gru_in = X.permute(0, 1, 3, 2) # (B,N,F,T)->(B,N,T,F)
         gru_in = gru_in.flatten(start_dim=0, end_dim=1) # (B*N, T, 2)        
         gru_out, _ = self.gru(gru_in) # (B*N,T_in,H)
         out = self.fc(gru_out[:,-1,:]) # (B*N, T_out)
@@ -246,4 +246,3 @@ class GCNGRU(torch.nn.Module):
 #         out = F.leaky_relu(out)
         out = out.view(X.shape[0], X.shape[1], self.periods, -1) # (B,N,Tout,1)
         return out.squeeze(dim=3) # (B,N,T)
-    
